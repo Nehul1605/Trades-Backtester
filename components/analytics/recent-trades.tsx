@@ -3,6 +3,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowUpRight, ArrowDownRight } from "lucide-react"
+import SpotlightCard from '../SpotlightCard';
 
 interface Trade {
   id: string
@@ -33,7 +34,7 @@ export function RecentTrades({ trades }: RecentTradesProps) {
 
   if (recentTrades.length === 0) {
     return (
-      <Card className="border-border/50">
+      <SpotlightCard className="custom-spotlight-card dark:bg-[#04090e] bg-[#fdfdfd] shadow-sm text-card-foreground" spotlightColor="rgba(0, 229, 255, 0.2)">
         <CardHeader>
           <CardTitle>Recent Trades</CardTitle>
           <CardDescription>Your latest closed trades</CardDescription>
@@ -43,12 +44,12 @@ export function RecentTrades({ trades }: RecentTradesProps) {
             No recent trades to display
           </div>
         </CardContent>
-      </Card>
+      </SpotlightCard>
     )
   }
 
   return (
-    <Card className="border-border/50">
+    <SpotlightCard className="custom-spotlight-card dark:bg-[#04090e] bg-[#fdfdfd] shadow-sm text-card-foreground" spotlightColor="rgba(0, 229, 255, 0.2)">
       <CardHeader>
         <CardTitle>Recent Trades</CardTitle>
         <CardDescription>Your latest closed trades</CardDescription>
@@ -62,11 +63,10 @@ export function RecentTrades({ trades }: RecentTradesProps) {
             >
               <div className="flex items-center gap-3">
                 <div
-                  className={`flex items-center justify-center w-10 h-10 rounded-lg ${
-                    (trade.pnl || 0) >= 0
-                      ? "bg-primary/10 border border-primary/20"
-                      : "bg-destructive/10 border border-destructive/20"
-                  }`}
+                  className={`flex items-center justify-center w-10 h-10 rounded-lg ${(trade.pnl || 0) >= 0
+                    ? "bg-primary/10 border border-primary/20"
+                    : "bg-destructive/10 border border-destructive/20"
+                    }`}
                 >
                   {(trade.pnl || 0) >= 0 ? (
                     <ArrowUpRight className="w-5 h-5 text-primary" />
@@ -96,6 +96,7 @@ export function RecentTrades({ trades }: RecentTradesProps) {
           ))}
         </div>
       </CardContent>
-    </Card>
+    </SpotlightCard>
+
   )
 }

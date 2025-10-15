@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { TrendingUp, TrendingDown, Target, DollarSign } from "lucide-react"
+import SpotlightCard from '../SpotlightCard';
 
 interface Trade {
   id: string
@@ -35,20 +36,20 @@ export function StatsCards({ trades }: StatsCardsProps) {
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-      <Card className="border-border/50">
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Total P&L</CardTitle>
-          <DollarSign className="h-4 w-4 text-muted-foreground" />
-        </CardHeader>
-        <CardContent>
-          <div className={`text-2xl font-bold ${totalPnL >= 0 ? "text-primary" : "text-destructive"}`}>
-            {formatCurrency(totalPnL)}
-          </div>
-          <p className="text-xs text-muted-foreground mt-1">{closedTrades.length} closed trades</p>
-        </CardContent>
-      </Card>
+      <SpotlightCard className="custom-spotlight-card dark:bg-[#04090e] bg-[#fdfdfd] shadow-sm text-card-foreground" spotlightColor="rgba(0, 229, 255, 0.2)">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-sm font-medium">Total P&L</CardTitle>
+        <DollarSign className="h-4 w-4 text-muted-foreground" />
+      </CardHeader>
+      <CardContent>
+        <div className={`text-2xl font-bold ${totalPnL >= 0 ? "text-primary" : "text-destructive"}`}>
+          {formatCurrency(totalPnL)}
+        </div>
+        <p className="text-xs text-muted-foreground mt-1">{closedTrades.length} closed trades</p>
+      </CardContent>
+    </SpotlightCard>
 
-      <Card className="border-border/50">
+      <SpotlightCard className = "custom-spotlight-card dark:bg-[#04090e] bg-[#fdfdfd] shadow-sm text-card-foreground" spotlightColor = "rgba(0, 229, 255, 0.2)" >
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Win Rate</CardTitle>
           <Target className="h-4 w-4 text-muted-foreground" />
@@ -59,9 +60,9 @@ export function StatsCards({ trades }: StatsCardsProps) {
             {winningTrades.length}W / {losingTrades.length}L
           </p>
         </CardContent>
-      </Card>
+      </SpotlightCard >
 
-      <Card className="border-border/50">
+      <SpotlightCard className="custom-spotlight-card dark:bg-[#04090e] bg-[#fdfdfd] shadow-sm text-card-foreground" spotlightColor="rgba(0, 229, 255, 0.2)">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Avg Win</CardTitle>
           <TrendingUp className="h-4 w-4 text-primary" />
@@ -70,9 +71,9 @@ export function StatsCards({ trades }: StatsCardsProps) {
           <div className="text-2xl font-bold text-primary">{formatCurrency(avgWin)}</div>
           <p className="text-xs text-muted-foreground mt-1">{winningTrades.length} winning trades</p>
         </CardContent>
-      </Card>
+      </SpotlightCard>
 
-      <Card className="border-border/50">
+      <SpotlightCard className="custom-spotlight-card dark:bg-[#04090e] bg-[#fdfdfd] shadow-sm text-card-foreground" spotlightColor="rgba(0, 229, 255, 0.2)">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Avg Loss</CardTitle>
           <TrendingDown className="h-4 w-4 text-destructive" />
@@ -81,7 +82,7 @@ export function StatsCards({ trades }: StatsCardsProps) {
           <div className="text-2xl font-bold text-destructive">{formatCurrency(avgLoss)}</div>
           <p className="text-xs text-muted-foreground mt-1">{losingTrades.length} losing trades</p>
         </CardContent>
-      </Card>
-    </div>
+      </SpotlightCard>
+    </div >
   )
 }

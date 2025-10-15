@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts"
+import SpotlightCard from '../SpotlightCard';
 
 interface Trade {
   id: string
@@ -45,7 +46,7 @@ export function PerformanceChart({ trades }: PerformanceChartProps) {
   }
 
   return (
-    <Card className="border-border/50">
+    <SpotlightCard className="custom-spotlight-card dark:bg-[#04090e] bg-[#fdfdfd] shadow-sm text-card-foreground" spotlightColor="rgba(0, 229, 255, 0.2)">
       <CardHeader>
         <CardTitle>Cumulative P&L</CardTitle>
         <CardDescription>Track your profit and loss over time</CardDescription>
@@ -55,13 +56,13 @@ export function PerformanceChart({ trades }: PerformanceChartProps) {
           <AreaChart data={chartData}>
             <defs>
               <linearGradient id="colorPnl" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.3} />
-                <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0} />
+                <stop offset="5%" stopColor="rgb(116, 113, 113)" stopOpacity={0.6} />
+                <stop offset="95%" stopColor="rgb(116, 113, 113)" stopOpacity={0.3} />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.3} />
-            <XAxis dataKey="date" stroke="hsl(var(--muted-foreground))" fontSize={12} />
-            <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} />
+            <XAxis dataKey="date" stroke="var(--primary)" fontSize={12} />
+            <YAxis stroke="var(--primary)" fontSize={12} />
             <Tooltip
               contentStyle={{
                 backgroundColor: "hsl(var(--card))",
@@ -74,6 +75,6 @@ export function PerformanceChart({ trades }: PerformanceChartProps) {
           </AreaChart>
         </ResponsiveContainer>
       </CardContent>
-    </Card>
+    </SpotlightCard>
   )
 }

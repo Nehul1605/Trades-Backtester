@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts"
+import SpotlightCard from '../SpotlightCard';
 
 interface Trade {
   id: string
@@ -28,11 +29,11 @@ export function TradeTypeDistribution({ trades }: TradeTypeDistributionProps) {
     { name: "Short Trades", value: shortTrades.length, pnl: shortPnL },
   ]
 
-  const COLORS = ["hsl(var(--primary))", "hsl(var(--accent))"]
+  // const COLORS = ["hsl(var(--primary))", "hsl(var(--accent))"]
 
   if (closedTrades.length === 0) {
     return (
-      <Card className="border-border/50">
+      <SpotlightCard className="custom-spotlight-card dark:bg-[#04090e] bg-[#fdfdfd] shadow-sm text-card-foreground" spotlightColor="rgba(0, 229, 255, 0.2)">
         <CardHeader>
           <CardTitle>Trade Type Distribution</CardTitle>
           <CardDescription>Long vs Short trade performance</CardDescription>
@@ -42,12 +43,12 @@ export function TradeTypeDistribution({ trades }: TradeTypeDistributionProps) {
             No closed trades to display
           </div>
         </CardContent>
-      </Card>
+      </SpotlightCard>
     )
   }
 
   return (
-    <Card className="border-border/50">
+    <SpotlightCard className="custom-spotlight-card dark:bg-[#04090e] bg-[#fdfdfd] shadow-sm text-card-foreground" spotlightColor="rgba(0, 229, 255, 0.2)">
       <CardHeader>
         <CardTitle>Trade Type Distribution</CardTitle>
         <CardDescription>Long vs Short trade performance</CardDescription>
@@ -55,14 +56,14 @@ export function TradeTypeDistribution({ trades }: TradeTypeDistributionProps) {
       <CardContent>
         <ResponsiveContainer width="100%" height={300}>
           <PieChart>
-            <Pie data={data} cx="50%" cy="50%" labelLine={false} outerRadius={80} fill="#8884d8" dataKey="value">
+            <Pie data={data} cx="50%" cy="50%" labelLine={false} outerRadius={80} fill="#747171ff" dataKey="value">
               {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                <Cell />
               ))}
             </Pie>
             <Tooltip
               contentStyle={{
-                backgroundColor: "hsl(var(--card))",
+                // backgroundColor: "hsl(var(--card))",
                 border: "1px solid hsl(var(--border))",
                 borderRadius: "8px",
               }}
@@ -85,6 +86,6 @@ export function TradeTypeDistribution({ trades }: TradeTypeDistributionProps) {
           </div>
         </div>
       </CardContent>
-    </Card>
+    </SpotlightCard>
   )
 }
