@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import SpotlightCard from '../SpotlightCard';
 
 interface Trade {
   id: string
@@ -48,7 +49,7 @@ export function StrategyBreakdown({ trades }: StrategyBreakdownProps) {
 
   if (strategies.length === 0) {
     return (
-      <Card className="border-border/50">
+      <SpotlightCard className="custom-spotlight-card dark:bg-[#04090e] bg-[#fdfdfd] shadow-sm text-card-foreground" spotlightColor="rgba(0, 229, 255, 0.2)">
         <CardHeader>
           <CardTitle>Strategy Breakdown</CardTitle>
           <CardDescription>Performance by trading strategy</CardDescription>
@@ -58,13 +59,15 @@ export function StrategyBreakdown({ trades }: StrategyBreakdownProps) {
             No strategies to display
           </div>
         </CardContent>
-      </Card>
+      </SpotlightCard>
     )
   }
 
   return (
-    <Card className="border-border/50">
+
+    <SpotlightCard className="custom-spotlight-card dark:bg-[#04090e] bg-[#fdfdfd] shadow-sm text-card-foreground" spotlightColor="rgba(0, 229, 255, 0.2)">
       <CardHeader>
+
         <CardTitle>Strategy Breakdown</CardTitle>
         <CardDescription>Performance by trading strategy</CardDescription>
       </CardHeader>
@@ -91,6 +94,6 @@ export function StrategyBreakdown({ trades }: StrategyBreakdownProps) {
           ))}
         </div>
       </CardContent>
-    </Card>
+    </SpotlightCard>
   )
 }
